@@ -3,13 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random
 import string
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
 
-# Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///reservations.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Database configuration using environment variable
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # For securing session cookies
 db = SQLAlchemy(app)
 
 # Define the Reservation model
@@ -22,9 +27,9 @@ class Reservation(db.Model):
     room_type = db.Column(db.String(50), nullable=False)
     ticket_number = db.Column(db.String(10), unique=True, nullable=False)
 
-# Admin credentials (change as needed)
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "admin123"
+# Admin credentials from .env file
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME')
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
 # Create database tables before the first request
 @app.before_request
