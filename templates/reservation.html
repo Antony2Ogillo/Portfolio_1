@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - Ellora Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Ellora Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/reservation">Reservation</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+  
+    <section id="reservation-form">
+        <h2>Make a Reservation</h2>
+        <form id="reservationForm" action="/reservation" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required>
+        
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required>
+        
+            <label for="roomType">Room Type:</label>
+            <select id="roomType" name="roomType" required>
+                <option value="single">Single Room</option>
+                <option value="double">Double Room</option>
+                <option value="suite">Suite</option>
+            </select>
+        
+            <button type="submit">Submit Reservation</button>
+        </form>
+        
+        <p id="confirmationMessage" style="color: green; display: none;"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ellora Hotel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("reservationForm");
+            const confirmationMessage = document.getElementById("confirmationMessage");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent page reload
+
+                const formData = new FormData(form);
+
+                fetch("/reservation", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        confirmationMessage.textContent = data.message;
+                        confirmationMessage.style.display = "block";
+                        form.reset(); // Clear the form after successful submission
+                    } else {
+                        alert("Reservation failed. Please try again.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    </script>
+</body>
+</html>

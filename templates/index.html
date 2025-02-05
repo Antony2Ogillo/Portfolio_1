@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellora Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    
+    <header>
+        <h1>Ellora Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/reservation">Reservation</a></li>
+                <li><a href="/admin">Admin</a></li> <!-- Add this line -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Experience Luxury</h2>
+        <p>Book your stay with us and enjoy the finest hospitality.</p>
+        <a href="/reservation" class="btn">Book Now</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ellora Hotel. All rights reserved.</p>
+    </footer>
+</body>
+</html>

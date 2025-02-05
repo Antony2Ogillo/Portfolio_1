@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Ellora Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Ellora Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/reservation">Reservation</a></li>
+                <li><a href="/admin">Admin</a></li> <!-- Add this line -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <div class="image-card"></div>
+            <img src="{{ url_for('static', filename='images/hotel.jpeg') }}" alt="Ellora Hotel" class="round-image">
+        </div>
+
+        <style>
+            .image-card {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .round-image {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        </style>
+        <div class="about-content">
+            <h2>About Ellora Hotel</h2>
+            <p>
+                Welcome to Ellora Hotel, where luxury meets comfort. Located in the heart of the city, 
+                our hotel offers world-class amenities and exceptional service to make your stay unforgettable.
+            </p>
+            <p>
+                Whether you're here for business or leisure, our spacious rooms, fine dining, and relaxing spa 
+                will ensure you have a memorable experience.
+            </p>
+            <p>
+                At Ellora Hotel, we pride ourselves on creating a welcoming atmosphere for all our guests. 
+                Our dedicated staff is always ready to assist you with anything you need.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ellora Hotel. All rights reserved.</p>
+    </footer>
+</body>
+</html>

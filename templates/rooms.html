@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms - Ellora Hotel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .room-image {
+            width: 100%;
+            height: 200px; /* Set a fixed height for all room images */
+            object-fit: cover; /* Ensure images cover the area without distortion */
+            transition: transform 0.3s ease-in-out;
+        }
+        .room-image:hover {
+            transform: scale(1.1);
+        }
+        .room {
+            max-width: 300px; /* Ensure all rooms have the same max width */
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff; /* Change color to white for better visibility */
+            margin: 5px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Align the menu to the right */
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin-left: 20px; /* Add some space between menu items */
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+            }
+            nav ul.showing {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ellora Hotel</h1>
+        <nav>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/reservation">Reservation</a></li>
+                <li><a href="/admin">Admin</a></li> <!-- Add this line -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="rooms">
+        <h2>Our Rooms</h2>
+        <p>
+            Choose from our wide range of luxurious rooms designed to provide you with the ultimate comfort and relaxation.
+        </p>
+
+        <div class="room-list">
+            <!-- Single Room -->
+            <div class="room">
+                <img src="{{ url_for('static', filename='images/single-room.jpeg') }}" alt="Single Room" class="room-image">
+                <h3>Single Room</h3>
+                <p>
+                    Perfect for solo travelers, our single rooms offer a cozy and comfortable stay with all the essential amenities.
+                </p>
+                <p><strong>Price:</strong> $100 per night</p>
+                <a href="/reservation" class="btn">Book Now</a>
+            </div>
+
+            <!-- Double Room -->
+            <div class="room">
+                <img src="{{ url_for('static', filename='images/double-room.jpeg') }}" alt="Double Room" class="room-image">
+                <h3>Double Room</h3>
+                <p>
+                    Ideal for couples or small families, our double rooms feature a spacious layout and modern furnishings.
+                </p>
+                <p><strong>Price:</strong> $150 per night</p>
+                <a href="/reservation" class="btn">Book Now</a>
+            </div>
+
+            <!-- Suite -->
+            <div class="room">
+                <img src="{{ url_for('static', filename='images/suite.jpg') }}" alt="Suite" class="room-image">
+                <h3>Suite</h3>
+                <p>
+                    Experience luxury at its finest with our suites, offering a separate living area, premium amenities, and stunning views.
+                </p>
+                <p><strong>Price:</strong> $250 per night</p>
+                <a href="/reservation" class="btn">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Ellora Hotel. All rights reserved.</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const navUl = document.querySelector('nav ul');
+            navUl.classList.toggle('showing');
+        }
+    </script>
+</body>
+</html>
