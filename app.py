@@ -124,5 +124,8 @@ def admin_logout():
     flash("Logged out successfully", "success")
     return redirect(url_for('admin_login'))
 
+port = int(os.environ.get('PORT', 8000))
+
 if __name__ == '__main__':
-    app.run(debug=False)
+    # Run the app on 0.0.0.0 and the correct port
+    app.run(debug=False, host='0.0.0.0', port=port)
