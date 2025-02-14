@@ -55,9 +55,11 @@ def rooms():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        message = request.form.get('message')
+        # Since the frontend sends JSON, extract the data accordingly.
+        data = request.get_json() or {}
+        name = data.get('name')
+        email = data.get('email')
+        message = data.get('message')
 
         print(f"Message received from {name} ({email}): {message}")
         return jsonify({"success": True, "message": "Message sent successfully!"})
@@ -123,9 +125,9 @@ def admin_logout():
     session.pop('admin_logged_in', None)
     flash("Logged out successfully", "success")
     return redirect(url_for('admin_login'))
-""" 
+
 port = int(os.environ.get('PORT', 8000))
 
 if __name__ == '__main__':
     # Run the app on 0.0.0.0 and the correct port
-    app.run(debug=False, host='0.0.0.0', port=port) """
+    app.run(debug=False, host='0.0.0.0', port=port)
